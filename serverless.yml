@@ -1,0 +1,56 @@
+service: boleta-service
+
+frameworkVersion: '3.39.0'
+
+plugins:
+  - serverless-python-requirements
+
+provider:
+  name: aws
+  runtime: python3.10
+  stage: dev
+  region: sa-east-1
+
+  environment:
+    S3_BUCKET_NAME: ${self:custom.s3BucketName}
+    DB_HOST: ${env:DB_HOST}
+    DB_USER: ${env:DB_USER}
+    DB_PASS: ${env:DB_PASS}
+    DB_NAME: ${env:DB_NAME}
+
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "s3:PutObject"    
+            - "s3:GetObject"    
+          Resource: "arn:aws:s3:::${self:custom.s3BucketName}/*"
+
+functions:
+  generateBoleta:
+    handler: handler.generate_invoice
+    events:
+      - http:
+          path: /invoice/{requestId}
+          method: get
+          cors: true
+
+custom:
+  s3BucketName: bucket-boletas-123987
+  pythonRequirements:
+    dockerizePip: true
+
+
+resources:
+  Resources:
+    BoletasBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.s3BucketName}
+
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true

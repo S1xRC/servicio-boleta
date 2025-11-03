@@ -1,0 +1,5 @@
+fpdf2
+boto3
+psycopg2-binary
+sqlalchemy
+PyJWT
