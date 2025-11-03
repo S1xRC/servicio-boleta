@@ -37,7 +37,7 @@ jobs:
         aws-region: sa-east-1
 
     - name: Serverless Deploy
-      run: npx sls deploy --stage prodn
+      run: npx sls deploy --stage dev
       env:
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_USER: ${{ secrets.DB_USER }}
