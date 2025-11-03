@@ -37,7 +37,7 @@ functions:
           cors: true
 
 custom:
-  s3BucketName: bucket-boletas-123987
+  s3BucketName: bucket-boletas-123987-${sls:stage}
   pythonRequirements:
     dockerizePip: true
 
