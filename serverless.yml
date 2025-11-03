@@ -1,6 +1,6 @@
 service: boleta-service
 
-frameworkVersion: '3.39.0'
+frameworkVersion: '3.38.0'
 
 plugins:
   - serverless-python-requirements
