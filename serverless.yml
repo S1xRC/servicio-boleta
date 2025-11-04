@@ -34,12 +34,20 @@ functions:
       - http:
           path: /invoice/{requestId}
           method: GET
-          cors: true
+          cors:
+            origin: https://www.legitbusiness.online
+            headers:
+              - Content-Type
+              - Authorization
       - http: 
           path: /invoice/{requestId}
-          method: OPTIONS 
-          cors: true
-
+          method: OPTIONS
+          cors:
+            origin: https://www.legitbusiness.online
+            headers:
+              - Content-Type
+              - Authorization 
+              
 custom:
   s3BucketName: bucket-boletas-123456-${sls:stage}
   pythonRequirements:
