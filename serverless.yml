@@ -33,7 +33,11 @@ functions:
     events:
       - http:
           path: /invoice/{requestId}
-          method: get
+          method: GET
+          cors: true
+      - http: 
+          path: /invoice/{requestId}
+          method: OPTIONS 
           cors: true
 
 custom:
