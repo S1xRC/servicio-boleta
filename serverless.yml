@@ -10,6 +10,7 @@ provider:
   runtime: python3.10
   stage: dev
   region: sa-east-1
+  timeout: 30
 
   environment:
     S3_BUCKET_NAME: ${self:custom.s3BucketName}
