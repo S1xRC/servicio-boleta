@@ -92,7 +92,7 @@ def generate_invoice(event, context):
         if result.transaction_date:
             pdf.cell(200, 10, txt=f"Fecha: {result.transaction_date.strftime('%Y-%m-%d')}", ln=True)
 
-        pdf_bytes = pdf.output(dest='S').encode('latin-1')
+        pdf_bytes = pdf.output(dest='S')
         pdf_stream = io.BytesIO(pdf_bytes)
         
         file_key = f"boletas/{user_id}/{result.buy_order_id}.pdf"
